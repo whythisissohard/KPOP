@@ -209,24 +209,158 @@ body {
 }
 #kpop .slot .empty { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
 
-#kpop .final {
+/* 最終成果頁 */
+#kpop .result-hero {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 24px;
   flex-wrap: wrap;
-  border: 1px solid var(--border-soft);
-  background: var(--bg-subtle);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 12px 0;
+  padding: 26px;
+  margin: 14px 0 18px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(125deg, #1d1035 0%, #482078 58%, #7c2d75 100%);
 }
-#kpop .final .big { font-size: 32px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
-#kpop .final .big.sm { font-size: 20px; }
-#kpop .final .lbl { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-#kpop .final .verdict { font-size: 16px; font-weight: 700; }
-#kpop .final .hint { font-size: 12px; color: var(--text-sec); margin-top: 4px; }
+#kpop .result-hero::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: -70px;
+  top: -105px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.09);
+  pointer-events: none;
+}
+#kpop .result-kicker { color: #e7c9ff; font-size: 11px; letter-spacing: 2px; font-weight: 700; }
+#kpop .result-title { margin: 6px 0 5px; font-size: 25px; font-weight: 800; }
+#kpop .result-desc { color: #eadcf7; font-size: 13px; line-height: 1.6; }
+#kpop .result-grade-wrap { position: relative; z-index: 1; min-width: 112px; text-align: center; }
+#kpop .result-grade-label { color: #eadcf7; font-size: 12px; margin-bottom: 3px; }
+#kpop .result-grade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 94px;
+  min-height: 84px;
+  padding: 4px 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+  font-size: 47px;
+  line-height: 1;
+  font-weight: 900;
+  text-shadow: 0 3px 18px rgba(0,0,0,.2);
+}
+#kpop .result-metrics { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 9px; margin: 14px 0 22px; }
+#kpop .metric { border: 1px solid var(--border-soft); border-radius: 11px; padding: 12px; background: #fff; min-width: 0; }
+#kpop .metric .lbl { color: var(--text-muted); font-size: 11px; margin-bottom: 6px; }
+#kpop .metric .value { color: var(--text-main); font-size: 21px; line-height: 1.2; font-weight: 800; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+#kpop .metric .subvalue { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+#kpop .roster-heading { display: flex; align-items: end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 8px 0 10px; }
+#kpop .roster-heading h3 { margin: 0; font-size: 18px; }
+#kpop .roster-heading p { margin: 0; color: var(--text-muted); font-size: 12px; }
+#kpop .roster-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 9px; }
+#kpop .member-card {
+  min-width: 0;
+  border: 1px solid var(--border-soft);
+  border-radius: 13px;
+  background: #fff;
+  padding: 12px;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s, box-shadow .15s;
+  outline: none;
+}
+#kpop .member-card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 7px 20px rgba(62,30,102,.09); }
+#kpop .member-card:focus-visible { box-shadow: 0 0 0 3px rgba(109,40,217,.2); }
+#kpop .member-card.sel { border: 2px solid var(--accent); background: #faf7ff; padding: 11px; box-shadow: 0 0 0 3px rgba(109,40,217,.08); }
+#kpop .member-top { display: flex; justify-content: space-between; align-items: center; gap: 5px; margin-bottom: 10px; }
+#kpop .member-index { color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+#kpop .role-pill { border-radius: 999px; padding: 4px 8px; color: #5b21b6; background: #f1eaff; font-size: 10px; white-space: nowrap; font-weight: 700; }
+#kpop .member-name { font-size: 16px; font-weight: 800; line-height: 1.3; overflow-wrap: anywhere; }
+#kpop .member-group { min-height: 32px; color: var(--text-muted); font-size: 11px; line-height: 1.5; margin-top: 4px; }
+#kpop .member-score { margin: 11px 0 9px; }
+#kpop .member-score-line { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; font-size: 11px; }
+#kpop .member-score-line strong { font-size: 14px; }
+#kpop .score-track { height: 6px; overflow: hidden; border-radius: 999px; background: #eee9f5; margin-top: 5px; }
+#kpop .score-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #8b5cf6, #d946ef); }
+#kpop .member-card .st { gap: 3px; }
+#kpop .member-card .st .it { padding: 4px 1px; }
+#kpop .member-card .st .lb { font-size: 9px; }
+#kpop .member-card .st .v { font-size: 11px; }
+#kpop .member-card .st .g { font-size: 9px; }
+#kpop .member-card .ach { margin-top: 8px; min-height: 18px; line-height: 1.7; }
+#kpop .member-card .ach .a { font-size: 9px; padding: 1px 4px; margin: 0 2px 2px 0; }
+#kpop .swap-hint { margin: 12px 0 16px; padding: 10px 12px; background: var(--bg-subtle); border-radius: 9px; color: var(--text-sec); font-size: 12px; line-height: 1.6; }
+#kpop .swap-hint strong { color: var(--accent); }
+#kpop .result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; }
+#kpop .result-actions .note { margin: 0 0 0 auto; }
 #kpop .gg { display: inline-block; border-radius: 6px; padding: 2px 8px; }
-#kpop .note { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+#kpop .note { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.6; }
+@media (max-width: 850px) {
+  #kpop .roster-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  #kpop .result-metrics { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width: 560px) {
+  .game { padding: 16px; }
+  #kpop .result-hero { padding: 20px; }
+  #kpop .result-title { font-size: 21px; }
+  #kpop .result-grade { min-width: 76px; min-height: 70px; font-size: 38px; }
+  #kpop .result-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  #kpop .roster-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  #kpop .result-actions .note { width: 100%; margin: 2px 0 0; }
+}
+
+/* 五人團隊分析與夢幻企劃書 */
+#kpop .team-analysis, #kpop .creative-brief {
+  border: 1px solid var(--border-soft);
+  border-radius: 15px;
+  background: var(--bg-card);
+  padding: 18px;
+  margin: 18px 0;
+}
+#kpop .analysis-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+#kpop .analysis-head h3, #kpop .brief-head h3 { margin:3px 0 4px; font-size:19px; }
+#kpop .analysis-kicker, #kpop .brief-kicker { color:var(--accent); font-size:10px; letter-spacing:2px; font-weight:800; }
+#kpop .analysis-score { min-width:112px; text-align:right; }
+#kpop .analysis-score strong { display:block; color:var(--accent); font-size:28px; line-height:1.15; font-variant-numeric:tabular-nums; }
+#kpop .analysis-score span { color:var(--text-muted); font-size:11px; }
+#kpop .analysis-copy { color:var(--text-sec); font-size:13px; line-height:1.85; }
+#kpop .analysis-copy p { margin:9px 0; }
+#kpop .analysis-stat-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:7px; margin:14px 0; }
+#kpop .analysis-stat { border:1px solid var(--border-soft); background:var(--bg-subtle); border-radius:9px; padding:9px 7px; min-width:0; }
+#kpop .analysis-stat .name { display:block; color:var(--text-muted); font-size:10px; }
+#kpop .analysis-stat strong { display:block; margin-top:3px; font-size:17px; font-variant-numeric:tabular-nums; }
+#kpop .analysis-tags { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:14px; }
+#kpop .analysis-tag { border:1px solid var(--border-soft); border-radius:9px; background:var(--bg-subtle); padding:10px; min-width:0; }
+#kpop .analysis-tag strong { display:block; font-size:12px; margin-bottom:4px; }
+#kpop .analysis-tag span { display:block; color:var(--text-muted); font-size:11px; line-height:1.5; }
+#kpop .analysis-footnote { color:var(--text-muted); font-size:10px; line-height:1.6; margin-top:12px; }
+#kpop .brief-head { margin-bottom:12px; }
+#kpop .brief-head p { margin:0; color:var(--text-muted); font-size:12px; }
+#kpop .brief-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+#kpop .brief-card { border:1px solid var(--border-soft); border-radius:11px; background:var(--bg-subtle); padding:13px; min-width:0; }
+#kpop .brief-card .eyebrow { color:var(--accent); font-size:10px; font-weight:800; letter-spacing:.4px; margin-bottom:7px; }
+#kpop .brief-card h4 { margin:0 0 7px; font-size:18px; line-height:1.3; overflow-wrap:anywhere; }
+#kpop .brief-card p { margin:0; color:var(--text-sec); font-size:12px; line-height:1.75; }
+#kpop .brief-card.wide { grid-column:1 / -1; }
+#kpop .brief-lineup { color:var(--text-main) !important; font-size:14px !important; font-weight:700; letter-spacing:.2px; }
+#kpop .brief-lineup span { display:inline-block; margin:3px 8px 3px 0; }
+@media (max-width:700px) {
+  #kpop .analysis-stat-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  #kpop .analysis-tags { grid-template-columns:1fr; }
+}
+@media (max-width:560px) {
+  #kpop .team-analysis, #kpop .creative-brief { padding:14px; }
+  #kpop .brief-grid { grid-template-columns:1fr; }
+  #kpop .brief-card.wide { grid-column:auto; }
+  #kpop .analysis-score { text-align:left; }
+}
+
 </style>
 </head>
 <body>
@@ -345,29 +479,161 @@ function evalTeam(){
   return {sc:sc, abil:abil, abilG:grade(abil), ach:ach, achG:ag, finalG:fg, verdict:verdict, capped: ti(grade(abil))>ti(ag)+2, score:Math.round(abil*0.5+ach*0.5)};
 }
 
+
+function escapeHTML(value){
+  return String(value==null?'':value).replace(/[&<>"']/g,function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+var SKILL_NAMES = ['唱功','舞蹈','饒舌','視覺','舞台魅力'];
+function teamProfile(){
+  var avg=[0,0,0,0,0];
+  var groups=[];
+  var matched=0;
+  var roleCounts={vocal:0,dance:0,rap:0,ace:0,visual:0};
+  var versatile=0;
+  state.slots.forEach(function(o,i){
+    for(var j=0;j<5;j++) avg[j]+=o.s[j]/state.slots.length;
+    if(groups.indexOf(o.group)<0) groups.push(o.group);
+    if(o.roles.indexOf(POS[i])>=0) matched++;
+    POS.forEach(function(p){if(o.roles.indexOf(p)>=0) roleCounts[p]++;});
+    if(o.roles.length>=3) versatile++;
+  });
+  var hi=0,lo=0;
+  for(var k=1;k<5;k++){if(avg[k]>avg[hi])hi=k;if(avg[k]<avg[lo])lo=k;}
+  var ranked=POS.map(function(p){return {pos:p,count:roleCounts[p]};}).sort(function(a,b){return b.count-a.count;});
+  return {avg:avg,groups:groups,matched:matched,roleCounts:roleCounts,versatile:versatile,hi:hi,lo:lo,roleLeader:ranked[0]};
+}
+function improvementText(index){
+  var map=[
+    '適合透過音域安排、和聲層次與歌曲調性補足',
+    '適合透過編舞分層、走位與段落強弱補足',
+    '適合透過曲目選擇、段落分配或外部製作補足',
+    '適合透過造型、攝影語言與整體視覺概念補足',
+    '適合透過現場編排、互動設計與舞台敘事補足'
+  ];
+  return map[index];
+}
+function renderTeamAnalysis(r){
+  var p=teamProfile();
+  var distinct=p.groups.length;
+  var opener;
+  if(p.matched<=1) opener='這組比較像五位強者各自發光，若要形成整體感，舞台設計會是關鍵。';
+  else if(p.matched<=3) opener='這組兼具個人特色與部分定位默契，若要形成完整團隊感，仍需要靠舞台編排把每個人的優勢串起來。';
+  else opener='這組的原始定位與抽選位置相當吻合，成員分工清楚，適合發展具有團隊辨識度的舞台。';
+  var groupLine=distinct>=4
+    ? '成員來自 '+distinct+' 個不同團體，風格跨度大、可塑性高；歌曲選擇與舞台概念會決定能否整合成同一個團隊。'
+    : distinct===1
+      ? '五位成員來自同一個團體來源，風格連貫度較高；企劃上可以把原有默契延伸成新的團隊特色。'
+      : '成員來自 '+distinct+' 個不同團體，兼具不同團體風格；可透過統一的音樂方向與視覺設定建立共同識別。';
+  var fitLine=p.matched<=1
+    ? '直接符合原本擅長定位的位置較少，這組更考驗成員的跨領域能力與舞台調度。'
+    : '共有 '+p.matched+' / 5 個位置由原本具備相關定位的成員擔任，能形成基本分工；其餘位置可透過訓練與編排補足。';
+  var highLine='整體最突出的面向是'+SKILL_NAMES[p.hi]+'（平均 '+p.avg[p.hi].toFixed(1)+' 分），可考慮讓它成為主打歌或表演編排的核心。';
+  var lowLine='相較之下，'+SKILL_NAMES[p.lo]+'（平均 '+p.avg[p.lo].toFixed(1)+' 分）是相對需要補強的面向，'+improvementText(p.lo)+'。';
+  var roleLine;
+  var top=p.roleLeader;
+  if(top.count>=3){
+    roleLine='團內有較多人具備'+ROLEN[top.pos]+'相關定位，能形成鮮明的專長主軸，但分配 Part 與舞台功能時要避免角色重疊。';
+  } else if(p.versatile>=2){
+    roleLine='團內有 '+p.versatile+' 位成員具備多項定位，能在歌曲與舞台中靈活調整分工，適合設計輪替式 Part。';
+  } else {
+    roleLine='團內定位分布相對分散，可依歌曲風格重新安排 Part，讓每位成員都有清楚的發揮段落。';
+  }
+  var stats='';
+  SKILL_NAMES.forEach(function(n,i){
+    stats+='<div class="analysis-stat"><span class="name">'+n+'</span><strong>'+p.avg[i].toFixed(1)+'</strong></div>';
+  });
+  return '<section class="team-analysis">'+
+    '<div class="analysis-head"><div><div class="analysis-kicker">TEAM PROFILE · '+(state.g==='f'?'女團':'男團')+'</div><h3>五人團隊整體分析</h3><div class="analysis-copy">依照本局五位成員的能力值、原始定位與團體來源進行整理</div></div><div class="analysis-score"><strong>'+Math.round(r.abil)+'<span style="font-size:13px"> / 100</span></strong><span>'+p.matched+' / 5 個位置適配</span></div></div>'+
+    '<div class="analysis-stat-grid">'+stats+'</div>'+
+    '<div class="analysis-copy"><p>'+opener+'</p><p>'+fitLine+'</p><p>'+groupLine+'</p><p>'+highLine+'</p><p>'+lowLine+'</p><p>'+roleLine+'</p></div>'+
+    '<div class="analysis-tags"><div class="analysis-tag"><strong>團隊招牌</strong><span>'+SKILL_NAMES[p.hi]+'是團隊招牌</span></div><div class="analysis-tag"><strong>可補強處</strong><span>'+SKILL_NAMES[p.lo]+'可透過編排補強</span></div><div class="analysis-tag"><strong>定位適配</strong><span>'+p.matched+' / 5 個位置適配</span></div></div>'+
+    '<div class="analysis-footnote">此分析由遊戲內能力值、擅長定位與團體來源資料生成，屬於娛樂性陣容分析；不是外部 AI 即時生成，也不代表成員真實私下關係或默契。</div>'+
+    '</section>';
+}
+function creativeConcept(profile){
+  var concepts=[
+    {name:'VELVET HARMONY',desc:'聲線敘事｜以細膩和聲、情緒層次與溫暖音色建立辨識度。',sound:'R&B × Pop Ballad × City Pop',title:'AFTER THE RAIN',bside:'SOFT FOCUS'},
+    {name:'MOTION CODE',desc:'節奏解碼｜以俐落編舞、速度變化與強烈節拍建立舞台記憶點。',sound:'Dance-pop × House × UK garage',title:'BREAK THE FRAME',bside:'ON REPEAT'},
+    {name:'NO FILTER',desc:'直球態度｜以低頻律動、個性聲線與鮮明節奏展現團隊態度。',sound:'Hip-hop × Trap × Alternative R&B',title:'NO SIGNAL',bside:'SIDE QUEST'},
+    {name:'MIRROR MAZE',desc:'鏡像美學｜以冷調電子音色、精緻視覺與多層次氛圍營造神祕感。',sound:'Electropop × Synth-pop × R&B',title:'MIRRORBALL',bside:'GLASS HEART'},
+    {name:'LUCID DREAM',desc:'清醒夢境｜夢幻氛圍搭配細膩節奏，利用不同音色與舞台表情建立辨識度。',sound:'Dream-pop × R&B × UK garage',title:'SOMEWHERE IN BLUE',bside:'SLOW MOTION'}
+  ];
+  return concepts[profile.hi];
+}
+function renderCreativeBrief(){
+  var p=teamProfile();
+  var c=creativeConcept(p);
+  var high=SKILL_NAMES[p.hi], low=SKILL_NAMES[p.lo];
+  var note='這組需要一個夠清楚的企劃核心。我不會硬做全能型主打，而是先鎖定最有優勢的'+high+'面向，再用編曲和段落設計補上'+low+'的相對弱項。';
+  var balance=p.matched+' / 5 個位置適配。'+high+'是團隊招牌；'+low+'可透過編排補強。';
+  var fan;
+  if(p.groups.length>=4) fan='粉絲會先吵定位分配吧（笑）。但概念如果選對，說不定會變成意外有記憶點的組合。';
+  else if(p.matched>=4) fan='粉絲大概會先討論誰最適合當中心（笑）。定位相當完整，接下來就看主打歌能不能把團隊特色一次打出來。';
+  else fan='粉絲可能會先討論誰該唱哪一段、誰站中心（笑）。只要把每個人的優勢分配好，就有機會形成新的化學反應。';
+  var roast;
+  if(p.matched===0 && p.groups.length>=4) roast='目前比較像五位王牌被臨時抓來開會，先決定誰負責把大家拉進同一個宇宙。';
+  else if(p.groups.length>=4) roast='五位成員各自帶著不同團體的使用說明書，第一次合體可能要先開一場定位協調會。';
+  else if(p.matched>=4) roast='定位幾乎都對上了，現在最大的危機可能是每個人都太有主見，主打歌候選版本會開到第三輪。';
+  else roast='這團的分工還有調整空間，第一次排練可能會先花不少時間確認誰要站哪裡。';
+  var names=state.slots.map(function(o){return '<span>'+escapeHTML(o.name)+'</span>';}).join(' · ');
+  return '<section class="creative-brief">'+
+    '<div class="brief-head"><div class="brief-kicker">CREATIVE DIRECTION · '+(state.g==='f'?'女團':'男團')+'</div><h3>夢幻團體企劃書</h3><p>依照本局五人陣容與能力分布整理的娛樂企劃提案</p></div>'+
+    '<div class="brief-grid">'+
+      '<article class="brief-card"><div class="eyebrow">團體概念 / GROUP IDENTITY</div><h4>'+c.name+'</h4><p>'+c.desc+'</p></article>'+
+      '<article class="brief-card"><div class="eyebrow">音樂方向 / SOUND</div><h4>'+c.sound+'</h4><p>主打曲：'+c.title+'<br>收錄曲提案：'+c.bside+'</p></article>'+
+      '<article class="brief-card"><div class="eyebrow">製作人筆記 / PRODUCER\'S NOTE</div><p>'+note+'</p></article>'+
+      '<article class="brief-card"><div class="eyebrow">角色互補 / TEAM BALANCE</div><p>'+balance+'</p></article>'+
+      '<article class="brief-card"><div class="eyebrow">粉絲討論 / FAN REACTION</div><p>'+fan+'</p></article>'+
+      '<article class="brief-card"><div class="eyebrow">友善吐槽 / LIGHT ROAST</div><p>友善吐槽：'+roast+'</p></article>'+
+      '<article class="brief-card wide"><div class="eyebrow">首發企劃 / DEBUT LINE-UP</div><p class="brief-lineup">'+names+'</p></article>'+
+    '</div>'+
+  '</section>';
+}
+
 function render(){
   var html='<div class="hdr"><h2>抽選與陣容配置</h2><span class="sub">最終評價 = 能力評級 與 成就評級+2 取其低</span></div>';
   html+='<div class="tabs"><button class="tab'+(state.g==='m'?' on':'')+'" data-g="m">男團版</button><button class="tab'+(state.g==='f'?' on':'')+'" data-g="f">女團版</button></div>';
 
   if(state.done){
     var r=evalTeam();
-    html+='<div class="status"><span class="rd">最終陣容</span><span class="pw">換牌機會：<b>'+(state.power?'未使用':'已使用')+'</b></span></div>';
-    html+='<div class="final">';
-    html+='<div><div class="lbl">能力價值</div><div class="big sm">'+r.abil.toFixed(1)+'</div></div>';
-    html+='<div><div class="lbl">成就分</div><div class="big sm">'+r.ach.toFixed(1)+'</div></div>';
-    html+='<div><div class="lbl">綜合價值</div><div class="big sm">'+r.score+'</div></div>';
-    html+='<div><div class="lbl">能力評</div><div class="big sm"><span class="gg '+gcls(r.abilG)+'">'+r.abilG+'</span></div></div>';
-    html+='<div><div class="lbl">成就評</div><div class="big sm"><span class="gg '+gcls(r.achG)+'">'+r.achG+'</span></div></div>';
-    html+='<div><div class="lbl">最終評價</div><div class="big"><span class="gg '+gcls(r.finalG)+'">'+r.finalG+'</span></div></div>';
-    html+='<div style="flex:1;min-width:220px"><div class="verdict">'+r.verdict+'</div><div class="hint">'+(r.capped?'成就紀錄略顯不足，評價受到封頂限制（成就需達 A+ 以上才能拿 S+）':'能力與成就相輔相成，無封頂限制')+' · 點任意兩個位置可交換成員</div></div></div>';
-    html+='<div class="slots">';
+    var gradeText = r.finalG==='S+' ? '夢幻天花板陣容！' : r.finalG==='S' ? '頂尖王牌陣容！' : r.finalG.indexOf('A')===0 ? '實力堅強的夢幻團隊！' : '你的專屬夢幻團隊已完成！';
+    html+='<div class="status"><span class="rd">組團完成</span><span class="pw">換牌機會：<b>'+(state.power?'未使用':'已使用')+'</b></span></div>';
+    html+='<section class="result-hero">';
+    html+='<div><div class="result-kicker">K-POP DREAM TEAM · FINAL REPORT</div><div class="result-title">'+gradeText+'</div><div class="result-desc">五個位置全數到齊，這就是你選出的夢幻陣容。'+r.verdict+' </div></div>';
+    html+='<div class="result-grade-wrap"><div class="result-grade-label">最終團隊評級</div><div class="result-grade">'+r.finalG+'</div></div>';
+    html+='</section>';
+
+    html+='<div class="result-metrics">';
+    html+='<div class="metric"><div class="lbl">平均能力值</div><div class="value">'+r.abil.toFixed(1)+'</div><div class="subvalue">'+r.abilG+' 級</div></div>';
+    html+='<div class="metric"><div class="lbl">平均成就分</div><div class="value">'+r.ach.toFixed(1)+'</div><div class="subvalue">'+r.achG+' 級</div></div>';
+    html+='<div class="metric"><div class="lbl">綜合價值</div><div class="value">'+r.score+'</div><div class="subvalue">能力與成就各占 50%</div></div>';
+    html+='<div class="metric"><div class="lbl">能力評級</div><div class="value"><span class="gg '+gcls(r.abilG)+'">'+r.abilG+'</span></div><div class="subvalue">五個位置加權平均</div></div>';
+    html+='<div class="metric"><div class="lbl">成就評級</div><div class="value"><span class="gg '+gcls(r.achG)+'">'+r.achG+'</span></div><div class="subvalue">依歷年成就概算</div></div>';
+    html+='</div>';
+
+    html+='<div class="roster-heading"><h3>你的五大位置陣容</h3><p>依照各位置適配分數排列</p></div>';
+    html+='<div class="roster-grid">';
     POS.forEach(function(p,i){
       var o=state.slots[i];
-      html+='<div class="slot swp'+(state.sel===i?' sel':'')+'" data-slot="'+i+'"><div class="pos">'+ROLEN[p]+'</div><div class="who">'+o.name+'</div><div class="grp">'+o.group+(o.leg?' · 經典':'')+'</div><div class="sg '+gcls(grade(r.sc[i]))+'">'+grade(r.sc[i])+' · '+r.sc[i].toFixed(1)+'</div></div>';
+      var score=Math.max(0,Math.min(100,r.sc[i]));
+      var fit=o.roles.indexOf(p)>=0;
+      html+='<article class="member-card'+(state.sel===i?' sel':'')+'" data-slot="'+i+'" tabindex="0" role="button" aria-label="'+ROLEN[p]+'：'+o.name+'，點選以交換位置" title="點選以選取此成員，並與另一位成員交換位置">';
+      html+='<div class="member-top"><span class="member-index">MEMBER 0'+(i+1)+'</span><span class="role-pill">'+ROLEN[p]+'</span></div>';
+      html+='<div class="member-name">'+o.name+'</div>';
+      html+='<div class="member-group">'+o.group+' · '+o.year+' 年出道'+(o.leg?' · 經典團':'')+'</div>';
+      html+='<div class="member-score"><div class="member-score-line"><span>位置適配分</span><strong class="gg '+gcls(grade(r.sc[i]))+'">'+r.sc[i].toFixed(1)+' · '+grade(r.sc[i])+'</strong></div><div class="score-track"><div class="score-fill" style="width:'+score+'%"></div></div></div>';
+      html+=statGrid(o);
+      html+=achBadges(o);
+      html+='</article>';
     });
     html+='</div>';
-    html+='<div class="acts"><button class="btn primary" data-act="restart">再來一局</button></div>';
-    html+='<div class="note">成就數據（日榜/週榜/登頂/年歌）為歷年概算。成就分 = 日×0.4 + 週×1 + 登頂×3 + 年歌×12。</div>';
+    html+='<div class="swap-hint"><strong>位置交換：</strong>'+(state.sel===null?'點選一張成員卡，再點選另一張，即可交換兩人的位置。':'已選取「'+ROLEN[POS[state.sel]]+'」，再點選另一位成員即可完成交換；再次點選同一張卡可取消。')+'</div>';
+    html+=renderTeamAnalysis(r);
+    html+=renderCreativeBrief();
+    html+='<div class="result-actions"><button class="btn primary" data-act="restart">再來一局</button><button class="btn" data-act="clear-sel">取消位置選取</button><span class="note">'+(r.capped?'目前最終評級受到成就分封頂限制。':'能力與成就評級沒有觸發封頂限制。')+'</span></div>';
+    html+='<div class="note">成就數據（日榜／週榜／登頂／年歌）為歷年概算。成就分 = 日榜×0.4 + 週榜×1 + 登頂×3 + 年歌×12。能力分依照各位置權重計算，若成員具備該位置專長，另加 8 分。</div>';
     root.innerHTML=html; return;
   }
 
@@ -411,7 +677,7 @@ root.addEventListener('click',function(e){
   var tab=t.closest('.tab');
   if(tab){ state={g:tab.dataset.g,round:0,slots:[null,null,null,null,null],cands:null,power:true,done:false,sel:null,msg:''}; render(); return; }
   if(state.done){
-    var sl=t.closest('.slot');
+    var sl=t.closest('.slot, .member-card');
     if(sl){
       var i=+sl.dataset.slot;
       if(state.sel===null){ state.sel=i; }
@@ -442,6 +708,11 @@ root.addEventListener('click',function(e){
     render(); return;
   }
   var act=btn.dataset.act;
+  if(act==='clear-sel'){
+    state.sel=null;
+    render();
+    return;
+  }
   if(act==='draw'||act==='redraw'){
     if(act==='redraw') state.power=false;
     state.cands=drawCands(); state.msg='';
@@ -452,6 +723,18 @@ root.addEventListener('click',function(e){
     render();
   }
 });
+root.addEventListener('keydown',function(e){
+  if(!state.done || (e.key!=='Enter' && e.key!==' ')) return;
+  var card=e.target.closest('.member-card');
+  if(!card) return;
+  e.preventDefault();
+  var i=+card.dataset.slot;
+  if(state.sel===null){ state.sel=i; }
+  else if(state.sel===i){ state.sel=null; }
+  else { var tmp=state.slots[state.sel]; state.slots[state.sel]=state.slots[i]; state.slots[i]=tmp; state.sel=null; }
+  render();
+});
+
 render();
 })();
 </script>
